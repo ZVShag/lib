@@ -18,7 +18,7 @@ using namespace std;
 // 5. Удалять книги из библиотеки
 class lib
 {
-    zhanr* n;
+    zhanr *n;
 public:
     lib()
     {
@@ -28,7 +28,8 @@ public:
 };
 class zhanr
 {
-    book* Book;
+    string name;
+    book *Book;
 public:
     zhanr()
     {
@@ -44,6 +45,18 @@ class book
 public:
     book()
     {
+        cout << "Name of book:" << endl;
+        cin >> this->name;
+        cout << "Date of publish: " << endl;
+        cin >> this->publish;
+        cout << "Enter author count:" << endl;
+        int n = 0;
+        cin >> n;
+        author* auth = new author[n];
+        for (int i = 0; i < n; i++)
+        {
+            auth[i];
+        }
 
     }
     ~book()
@@ -60,12 +73,21 @@ class author
 public:
     author()
     {
-
+        cout << "Enter name of author:" << endl;
+        cin >> this->name;
+        cout << "Enter surname:" << endl;
+        cin >> this->surname;
+        cout << "Enter old:" << endl;
+        cin >> this->old;
+    }
+    string Get_surname()
+    {
+        return this->surname;
     }
     
 };
 int main()
 {
-    
+    author Pushkin;
 }
 
