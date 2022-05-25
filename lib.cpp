@@ -86,7 +86,16 @@ class zhanr
 public:
     zhanr()
     {
-
+        cout << "Enter name of zhanr: " << endl;
+        cin >> this->name;
+        int n;
+        cout << "Enter count of book: " << endl;
+        cin >> n;
+        this->Book = new book[n];
+        for (int i = 0; i < n; i++)
+        {
+            Book[i];
+        }
     }
 
 };
@@ -94,17 +103,15 @@ class lib
 {
     zhanr* a;
 public:
-    void Lib(int size)
+    lib()
     {
-        this->a = new zhanr[size];
-
+        this->a = new zhanr[];
     }
 
 };
 
-
 int main()
 {
-    book Pushkin;
+    zhanr Pushkin;
 }
 
