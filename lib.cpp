@@ -16,55 +16,10 @@ using namespace std;
 //      d) по точной дате публикации или периоду
 // 4. Редактировать информации о книгах
 // 5. Удалять книги из библиотеки
-class lib
-{
-    zhanr *n;
-public:
-    lib()
-    {
 
-    }
 
-};
-class zhanr
-{
-    string name;
-    book *Book;
-public:
-    zhanr()
-    {
 
-    }
 
-};
-class book
-{
-    string name;
-    int publish;
-    author* auth;
-public:
-    book()
-    {
-        cout << "Name of book:" << endl;
-        cin >> this->name;
-        cout << "Date of publish: " << endl;
-        cin >> this->publish;
-        cout << "Enter author count:" << endl;
-        int n = 0;
-        cin >> n;
-        author* auth = new author[n];
-        for (int i = 0; i < n; i++)
-        {
-            auth[i];
-        }
-
-    }
-    ~book()
-    {
-        delete [] auth;
-   }
-
-};
 class author
 {
     string name;
@@ -75,8 +30,10 @@ public:
     {
         cout << "Enter name of author:" << endl;
         cin >> this->name;
+    
         cout << "Enter surname:" << endl;
         cin >> this->surname;
+  
         cout << "Enter old:" << endl;
         cin >> this->old;
     }
@@ -84,10 +41,70 @@ public:
     {
         return this->surname;
     }
-    
+    string Get_name()
+    {
+        return this->name;
+    }
+    string Get_old()
+    {
+        return this->old;
+    }
+
 };
+class book
+{
+    string name;
+    int publish;
+    author *auth;
+public:
+    book()
+    {
+        cout << "Name of book:" << endl;
+        cin >> this->name;
+        cout << "Date of publish: " << endl;
+        cin >> this->publish;
+        cout << "Enter author count:" << endl;
+        int n = 0;
+        cin >> n;
+        this->auth = new author[n];
+        for (int i = 0; i < n; i++)
+        {
+            auth[i];
+        }
+
+    }
+    ~book()
+    {
+        ;
+    }
+
+};
+class zhanr
+{
+    string name;
+    book* Book;
+public:
+    zhanr()
+    {
+
+    }
+
+};
+class lib
+{
+    zhanr* a;
+public:
+    void Lib(int size)
+    {
+        this->a = new zhanr[size];
+
+    }
+
+};
+
+
 int main()
 {
-    author Pushkin;
+    book Pushkin;
 }
 
