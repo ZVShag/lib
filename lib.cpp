@@ -28,14 +28,46 @@ class author
 public:
     author()
     {
+        // Проверка ввода имени автора книги
         cout << "Enter name of author:" << endl;
-        cin >> this->name;
-    
+        while (true)
+        {
+            getline(cin, this->name);
+            if (this->name == "")
+            {
+                cout << "Enter name of author:" << endl;
+               
+            }
+            else
+                break;
+        }
+        // Проверка ввода фамилии автора книги
         cout << "Enter surname:" << endl;
-        cin >> this->surname;
-  
+        while (true)
+        {
+            getline(cin, this->surname);
+            if (this->surname == "")
+            {
+                cout << "Enter surname of author:" << endl;
+
+            }
+            else
+                break;
+        }
+        // Проверка ввода возраста автора книги
         cout << "Enter old:" << endl;
-        cin >> this->old;
+        while (true)
+        {
+            getline(cin, this->old);
+            if (this->old == "")
+            {
+                cout << "Enter old:" << endl;
+
+            }
+            else
+                break;
+        }
+       
     }
     string Get_surname()
     {
@@ -105,13 +137,13 @@ class lib
 public:
     lib()
     {
-        this->a = new zhanr[];
+        this->a = new zhanr[5];
     }
 
 };
 
 int main()
 {
-    zhanr Pushkin;
+    author Pushkin;
 }
 
