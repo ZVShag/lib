@@ -32,6 +32,7 @@ string Input(string mess)
         else
             break;
     }
+    return str;
 
 }
 
@@ -97,13 +98,14 @@ class zhanr
 {
     string name;
     book* Book;
+    int n;
 public:
     zhanr()
     {
         this->name = Input("Name of zhanr:");
-        int n;
+        this->n = 0;
         cout << "Enter count of book: " << endl;
-        cin >> n;
+        cin >> this->n;
         this->Book = new book[n];
         for (int i = 0; i < n; i++)
         {
@@ -114,15 +116,34 @@ public:
     {
         return this->name;
     }
+    bool Get_element(string name)
+    {
+        for (int i = 0; i < n; i++)
+        {
+            if (Book[i].Get_name() == name)
+                return true;
+        }
+    }
 };
 class lib
 {
     zhanr* a;
+    int n;
 public:
     lib()
     {
         this->a = new zhanr[5];
     }
+    void Serach_name_book(string sname)
+    {
+        for (int i = 0; i < n; i++)
+        {
+            if (a[i].Get_element(sname))
+                cout << "Ok";
+
+        }
+    }
+
 
 };
 
