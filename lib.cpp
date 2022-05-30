@@ -17,6 +17,23 @@ using namespace std;
 // 4. Редактировать информации о книгах
 // 5. Удалять книги из библиотеки
 
+string Input(string mess)
+{
+    string str;
+    cout << mess << endl;
+    while (true)
+    {
+        getline(cin, str);
+        if (str == "")
+        {
+            cout << mess << endl;
+
+        }
+        else
+            break;
+    }
+
+}
 
 
 
@@ -28,45 +45,9 @@ class author
 public:
     author()
     {
-        // Проверка ввода имени автора книги
-        cout << "Enter name of author:" << endl;
-        while (true)
-        {
-            getline(cin, this->name);
-            if (this->name == "")
-            {
-                cout << "Enter name of author:" << endl;
-               
-            }
-            else
-                break;
-        }
-        // Проверка ввода фамилии автора книги
-        cout << "Enter surname:" << endl;
-        while (true)
-        {
-            getline(cin, this->surname);
-            if (this->surname == "")
-            {
-                cout << "Enter surname of author:" << endl;
-
-            }
-            else
-                break;
-        }
-        // Проверка ввода возраста автора книги
-        cout << "Enter old:" << endl;
-        while (true)
-        {
-            getline(cin, this->old);
-            if (this->old == "")
-            {
-                cout << "Enter old:" << endl;
-
-            }
-            else
-                break;
-        }
+        this->name = Input("Enter name of author:");
+        this->surname = Input("Enter surname:");
+        this->old = Input("Enter old:");
        
     }
     string Get_surname()
@@ -91,8 +72,7 @@ class book
 public:
     book()
     {
-        cout << "Name of book:" << endl;
-        cin >> this->name;
+        this->name = Input("Name of book:");
         cout << "Date of publish: " << endl;
         cin >> this->publish;
         cout << "Enter author count:" << endl;
@@ -105,6 +85,8 @@ public:
         }
 
     }
+    string Get_name() { return this->name; }
+    int Get_Publish() { return this->publish; }
     ~book()
     {
         ;
@@ -118,8 +100,7 @@ class zhanr
 public:
     zhanr()
     {
-        cout << "Enter name of zhanr: " << endl;
-        cin >> this->name;
+        this->name = Input("Name of zhanr:");
         int n;
         cout << "Enter count of book: " << endl;
         cin >> n;
@@ -129,7 +110,10 @@ public:
             Book[i];
         }
     }
-
+    string Get_name()
+    {
+        return this->name;
+    }
 };
 class lib
 {
