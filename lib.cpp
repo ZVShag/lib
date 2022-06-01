@@ -36,10 +36,6 @@ string Input(string mess)
     return str;
 
 }
-// 3 5
-//0.5
-// two
-// два
 int Num_input(string mess)
 {
     int k = 0;
@@ -158,9 +154,14 @@ class lib
 public:
     lib()
     {
+        
+    }
+    void NewLib()
+    {
         this->name = Input("Enter name of lib: ");
         this->countzhanr = Num_input("Enter Count of zhanr in this lib:");
         this->a = new zhanr[this->countzhanr];
+
     }
     void Serach_name_book(string sname)
     {
@@ -178,12 +179,22 @@ public:
 
 int main()
 {
-    int z = 0;
-   cout << "Create lib press 1:";
-   cin >> z;
+    lib Mendeleev;
+   
+   int z = 0;
+   //z = Num_input("Create lib press 1:");
+   z= Num_input("Upload lib press 2:");
    if (z==1)
    {
-       lib Mendeleev;
+       Mendeleev.NewLib();
+   }
+   if (z == 2)
+   {
+       cout << "ok";
+   }
+   if (z == 3)
+   {
+       
    }
     
 
