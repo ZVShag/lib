@@ -16,7 +16,6 @@ using namespace std;
 //      d) по точной дате публикации или периоду
 // 4. Редактировать информации о книгах
 // 5. Удалять книги из библиотеки
-int countzhanr = 0;
 int n = 0;
 string Input(string mess)
 {
@@ -24,6 +23,7 @@ string Input(string mess)
     cout << mess << endl;
     while (true)
     {
+        cin.ignore();
         getline(cin, str);
         if (str == "")
         {
@@ -36,6 +36,10 @@ string Input(string mess)
     return str;
 
 }
+// 3 5
+//0.5
+// two
+// два
 int Num_input(string mess)
 {
     int k = 0;
@@ -45,7 +49,7 @@ int Num_input(string mess)
         try
         {
             cin >> k;
-            return true;
+            return k;
             break;
 
         }
@@ -123,7 +127,6 @@ public:
     zhanr()
     {
         this->name = Input("Name of zhanr:");
-        countzhanr++;
         this->n = Num_input("Enter count of book: ");
         this->Book = new book[n];
         for (int i = 0; i < n; i++)
@@ -149,11 +152,15 @@ public:
 class lib
 {
     zhanr* a;
+    string name;
+    int countzhanr;
   
 public:
     lib()
     {
-        this->a = new zhanr[1];
+        this->name = Input("Enter name of lib: ");
+        this->countzhanr = Num_input("Enter Count of zhanr in this lib:");
+        this->a = new zhanr[this->countzhanr];
     }
     void Serach_name_book(string sname)
     {
@@ -164,12 +171,22 @@ public:
 
         }
     }
+    int Cet_countzhanr() { return this->countzhanr; }
 
 
 };
 
 int main()
 {
-    book Pushkin;
+    int z = 0;
+   cout << "Create lib press 1:";
+   cin >> z;
+   if (z==1)
+   {
+       lib Mendeleev;
+   }
+    
+
+    
 }
 
