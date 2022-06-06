@@ -1,6 +1,7 @@
 ﻿
 #include <iostream>
 #include<string>
+#include<vector>
 using namespace std;
 // Создать класс библиотека
 // Класс жанры
@@ -90,16 +91,17 @@ class book
     string name;
     int publish;
     author *auth;
+    int acount;
 public:
    
     book()
     {
-        int acount = 0;
+        
         this->name = Input("Name of book:");
         this->publish=Num_input("Date of publish: ");
-        acount = Num_input("Enter author count:");
-        this->auth = new author[acount];
-        for (int i = 0; i < acount; i++)
+        this->acount = Num_input("Enter author count:");
+        this->auth = new author[this->acount];
+        for (int i = 0; i < this->acount; i++)
         {
             auth[i];
         }
@@ -108,6 +110,12 @@ public:
     }
     string Get_name() { return this->name; }
     int Get_Publish() { return this->publish; }
+    string Get_author()
+    {
+        for (int i = 0; i < this->acount; i++)
+            return this->auth[i].Get_name();
+    }
+    
     ~book()
     {
         ;
@@ -144,6 +152,16 @@ public:
             }
         }
     }
+    bool Get_author(string aname)
+    {
+        for (int i = 0; i < this->n; i++)
+        {
+            if (Book[i].Get_author() == aname)
+            {
+                return true;
+            };
+        }
+    }
 };
 class lib
 {
@@ -163,14 +181,39 @@ public:
         this->a = new zhanr[this->countzhanr];
 
     }
-    void Serach_name_book(string sname)
+    void Serach_name_book()
     {
+        string sname;
+        cout << "Enter name of book : " << endl;
+        cin >> sname;
+        //vector <book> sbook;
+        int k = 0;
         for (int i = 0; i < countzhanr; i++)
         {
             if (a[i].Get_element_name(sname))
-                cout << "Ok";
+                k++;
 
         }
+        if (k == 0)
+            cout << "Not found this book"<<endl;
+        else
+            cout << "There is such a book!"<<endl;
+    }
+    void Serach_name_author()
+    {
+        string sname;
+        cout << "Enter name of author : " << endl;
+        cin >> sname;
+        int k = 0;
+        for (int i = 0; i < countzhanr; i++)
+        {
+            if (a[i].Get_author(sname))
+                k++;
+        }
+        if (k==0)
+            cout << "Not found this author" << endl;
+        else
+            cout << "There is such a author!" << endl;
     }
     int Cet_countzhanr() { return this->countzhanr; }
 
@@ -180,22 +223,30 @@ public:
 int main()
 {
     lib Mendeleev;
-   
-   int z = 0;
-   //z = Num_input("Create lib press 1:");
-   z= Num_input("Upload lib press 2:");
-   if (z==1)
-   {
-       Mendeleev.NewLib();
-   }
-   if (z == 2)
-   {
-       cout << "ok";
-   }
-   if (z == 3)
-   {
-       
-   }
+    while (true)
+    {
+        int z = 0;
+        cout << "Create lib press 1:" << endl << "Upload lib press 2:" << endl << "Find name of book 3:" << endl
+            << "Find name of author 4:" << endl << "Find name of zhanr 5:" << endl << "Find date of publish 6:" << endl;
+        cin >> z;
+        if (z == 1)
+        {
+            Mendeleev.NewLib();
+        }
+        if (z == 2)
+        {
+            cout << "ok";
+        }
+        if (z == 3)
+        {
+            Mendeleev.Serach_name_book();
+        }
+        if (z == 4)
+        {
+            Mendeleev.Serach_name_author();
+
+        }
+    }
     
 
     
