@@ -118,7 +118,7 @@ public:
     string Get_author()
     {
         for (int i = 0; i < this->acount; i++)
-            return this->auth[i].Get_name();
+            return this->auth[i].Get_name()+" "+this->auth[i].Get_surname();
     }
     void Print_book()
     {
@@ -253,6 +253,22 @@ public:
         else
             cout << "There is such a author!" << endl;
     }
+    void Search_zhanr()
+    {
+        string sname;
+        cout << "Enter zhanr : " << endl;
+        cin >> sname;
+        int k = 0;
+        for (int i = 0; i < countzhanr; i++)
+        {
+            
+                k++;
+        }
+        if (k == 0)
+            cout << "Not found this author" << endl;
+        else
+            cout << "There is such a author!" << endl;
+    }
     int Cet_countzhanr() { return this->countzhanr; }
 
 
@@ -286,6 +302,10 @@ int main()
 
         }
         if (z == 5)
+        {
+            Mendeleev.Search_zhanr();
+        }
+        if (z == 6)
         {
             Mendeleev.Search_publish();
 
