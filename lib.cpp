@@ -84,6 +84,11 @@ public:
     {
         return this->old;
     }
+    void Print_auth()
+    {
+        cout << endl << "Author name: " << this->Get_name() << endl << "Author surname: " << this->Get_surname() <<
+            endl << "Author age: " << this->Get_old() << endl;
+    }
 
 };
 class book
@@ -114,6 +119,10 @@ public:
     {
         for (int i = 0; i < this->acount; i++)
             return this->auth[i].Get_name();
+    }
+    void Print_book()
+    {
+        cout << endl<<this->name << endl << "Date of publish: " << this->publish << endl <<this->Get_author()<<endl;
     }
     
     ~book()
@@ -148,6 +157,7 @@ public:
         {
             if (Book[i].Get_name() == name)
             {
+                Book[i].Print_book();
                 return true;
             }
         }
