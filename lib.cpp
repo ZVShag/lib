@@ -1,318 +1,166 @@
 ﻿
 #include <iostream>
+#include <fstream>
 #include<string>
 #include<vector>
+/*Создать класс Airplane (самолет)
+С помощью перегрузки операторов реализовать:
+■ Проверка на равенство типов самолетов (операция = 🙂
+■ Увеличение и уменьшение пассажиров в салоне самолета
+(операции ++ и - - в префиксной форме)
+■ Сравнение двух самолетов по максимально возможному количеству пассажиров на борту (операция>)*/
 using namespace std;
-// Создать класс библиотека
-// Класс жанры
-// Класс книга
-// Класс авторы
-// реализовать возможность:
-// 1.Создавать библиотеку, со всеми вытекающими
-// 2. Добавлять книги
-// 3. Поиск книги
-//      a) по названию
-//      b) по автору(авторам)
-//      c) по жанру
-//      d) по точной дате публикации или периоду
-// 4. Редактировать информации о книгах
-// 5. Удалять книги из библиотеки
-int n = 0;
-string Input(string mess)
+class airplane
 {
-    string str;
-    cout << mess << endl;
-    while (true)
-    {
-        cin.ignore();
-        getline(cin, str);
-        if (str == "")
-        {
-            cout << mess << endl;
+private:
 
-        }
-        else
-            break;
-    }
-    return str;
+	string model;
+	string bort_num;
+	int pass;
+	int mpass;
 
-}
-int Num_input(string mess)
-{
-    int k = 0;
-    cout << mess << endl;
-    while (true)
-    {
-        try
-        {
-            cin >> k;
-            return k;
-            break;
-
-        }
-        catch (...)
-        {
-            cout << mess << endl;
-        }
-    }
-}
-
-
-
-class author
-{
-    string name;
-    string surname;
-    string old;
 public:
-    author()
-    {
-        this->name = Input("Enter name of author:");
-        this->surname = Input("Enter surname:");
-        this->old = Input("Enter old:");
-       
-    }
-    string Get_surname()
-    {
-        return this->surname;
-    }
-    string Get_name()
-    {
-        return this->name;
-    }
-    string Get_old()
-    {
-        return this->old;
-    }
-    void Print_auth()
-    {
-        cout << endl << "Author name: " << this->Get_name() << endl << "Author surname: " << this->Get_surname() <<
-            endl << "Author age: " << this->Get_old() << endl;
-    }
+	airplane()
+	{
+
+	}
+	airplane(string mod, string num, int pas,int mpas)
+	{
+		this->model = mod;
+		this->bort_num = num;
+		this->pass = pas;
+		this->mpass = mpas;
+	}
+	void Print()
+	{
+		cout << this->model;
+	}
+	void set_mod(string mod)
+	{
+		this->model = mod;
+	}
+	string get_mod()
+	{
+		return this->model;
+	}
+	string get_serial()
+	{
+		return this->bort_num;
+	}
+
+	void add_pass()
+	{
+		cout << "Введите кол-во пассажиров для добавления:" << endl;
+		int m;
+		cin >> m;
+		if (m + this->pass < this->mpass)
+			this->pass = this->pass + m;
+		else
+			cout << "Самолет не резиновый!";
+	}
+	bool operator ==(airplane air1)
+	{
+		return this->model == air1.model;
+	}
 
 };
-class book
-{
-    string name;
-    int publish;
-    author *auth;
-    int acount;
-public:
-   
-    book()
-    {
-        
-        this->name = Input("Name of book:");
-        this->publish=Num_input("Date of publish: ");
-        this->acount = Num_input("Enter author count:");
-        this->auth = new author[this->acount];
-        for (int i = 0; i < this->acount; i++)
-        {
-            auth[i];
-        }
-        n++;
-
-    }
-    string Get_name() { return this->name; }
-    int Get_Publish() { return this->publish; }
-    string Get_author()
-    {
-        for (int i = 0; i < this->acount; i++)
-            return this->auth[i].Get_name()+" "+this->auth[i].Get_surname();
-    }
-    void Print_book()
-    {
-        cout << endl<<this->name << endl << "Date of publish: " << this->publish << endl <<this->Get_author()<<endl;
-    }
-    
-    ~book()
-    {
-        ;
-    }
-
-};
-class zhanr
-{
-    string name;
-    book* Book;
-    int n;
-public:
-    zhanr()
-    {
-        this->name = Input("Name of zhanr:");
-        this->n = Num_input("Enter count of book: ");
-        this->Book = new book[n];
-        for (int i = 0; i < n; i++)
-        {
-            Book[i];
-        }
-    }
-    string Get_name()
-    {
-        return this->name;
-    }
-    bool Get_element_name(string name)
-    {
-        for (int i = 0; i < n; i++)
-        {
-            if (Book[i].Get_name() == name)
-            {
-                Book[i].Print_book();
-                return true;
-            }
-        }
-    }
-    bool Get_element_publish(int date)
-    {
-        for (int i = 0; i < n; i++)
-        {
-            if (Book[i].Get_Publish() == date)
-            {
-                Book[i].Print_book();
-                return true;
-            }
-        }
-    }
-    bool Get_author(string aname)
-    {
-        for (int i = 0; i < this->n; i++)
-        {
-            if (Book[i].Get_author() == aname)
-            {
-                return true;
-            };
-        }
-    }
-};
-class lib
-{
-    zhanr* a;
-    string name;
-    int countzhanr;
-  
-public:
-    lib()
-    {
-        
-    }
-    void NewLib()
-    {
-        this->name = Input("Enter name of lib: ");
-        this->countzhanr = Num_input("Enter Count of zhanr in this lib:");
-        this->a = new zhanr[this->countzhanr];
-
-    }
-    void Search_name_book()
-    {
-        string sname;
-        cout << "Enter name of book : " << endl;
-        cin >> sname;
-        //vector <book> sbook;
-        int k = 0;
-        for (int i = 0; i < countzhanr; i++)
-        {
-            if (a[i].Get_element_name(sname))
-                k++;
-
-        }
-        if (k == 0)
-            cout << "Not found this book"<<endl;
-        else
-            cout << "There is such a book!"<<endl;
-    }
-    void Search_publish()
-    {
-        int sname;
-        cout << "Enter year : " << endl;
-        cin >> sname;
-        int k = 0;
-        for (int i = 0; i < countzhanr; i++)
-        {
-            if (a[i].Get_element_publish(sname))
-                k++;
-
-        }
-        if (k == 0)
-            cout << "Not found this book" << endl;
-        else
-            cout << "There is such a book!" << endl;
-    }
-    void Search_name_author()
-    {
-        string sname;
-        cout << "Enter name of author : " << endl;
-        cin >> sname;
-        int k = 0;
-        for (int i = 0; i < countzhanr; i++)
-        {
-            if (a[i].Get_author(sname))
-                k++;
-        }
-        if (k==0)
-            cout << "Not found this author" << endl;
-        else
-            cout << "There is such a author!" << endl;
-    }
-    void Search_zhanr()
-    {
-        string sname;
-        cout << "Enter zhanr : " << endl;
-        cin >> sname;
-        int k = 0;
-        for (int i = 0; i < countzhanr; i++)
-        {
-            
-                k++;
-        }
-        if (k == 0)
-            cout << "Not found this author" << endl;
-        else
-            cout << "There is such a author!" << endl;
-    }
-    int Cet_countzhanr() { return this->countzhanr; }
-
-
-};
-
 int main()
-{
-    lib Mendeleev;
-    while (true)
-    {
-        
-        int z = 0;
-        cout << "Create lib press 1:" << endl << "Upload lib press 2:" << endl << "Find name of book 3:" << endl
-            << "Find name of author 4:" << endl << "Find name of zhanr 5:" << endl << "Find date of publish 6:" << endl;
-        cin >> z;
-        if (z == 1)
-        {
-            Mendeleev.NewLib();
-        }
-        if (z == 2)
-        {
-            cout << "ok";
-        }
-        if (z == 3)
-        {
-            Mendeleev.Search_name_book();
-        }
-        if (z == 4)
-        {
-            Mendeleev.Search_name_author();
+{/*
+ 1. Если вы хотите добавить самолет
+ 2. Сравнить самолеты по модели
+ 3. изменить кол-во пассажиров
+ */
+	string path = "samolet.txt";
+	
+	
+	airplane superjet;
+	while (true)
+	{
+		string model, serial;
+		int pas = 0, mpas = 0;
+		cout << "Если вы хотите добавить самолет введите 1: " << endl;
+		cout << "Если вы хотите сравинить самолеты по типу введите 2: " << endl;
+		cout << "Если вы хотите сравинить самолеты по кол-ву пассажиров введите 3: " << endl;
+		cout << "Если вы хотите изменить кол-во пассажиров в самолете введите 4: " << endl;
+		cout << "Для выхода введите 0: " << endl;
+		int k;
+		cin >> k;
+		if (k == 0)break;
+		if (k == 1)
+		{
+			cout << "Ведите модель самолета: " << endl;
+			cin >> model;
+			cout << "Ведите серийный номер самолета: " << endl;
+			cin >> serial;
+			cout << "Ведите кол-во пассажиров в самолете: " << endl;
+			cin >> pas;
+			cout << "Ведите пассажировместимость самолета: " << endl;
+			cin >> mpas;
+			airplane superjet(model, serial, pas, mpas);
+			//Open file write from file
+			ofstream fout;
+			fout.open(path, ofstream::app);
+			if (!fout.is_open())
+			{
+				cout << "bad!";
+			}
+			else
+			{
+				fout.write((char*)&superjet, sizeof(airplane));
+			}
+			fout.close();
+		}
+		if (k == 2)
+		{
+			cout << "Введите тип самолета:" << endl;
+			string md;
+			cin >> md;
+			//Open file read from file
+			ifstream fin;
+			if (fin.is_open())
+			{
+				cout << "Damage file!";
+			}
+			else
+			{
+				airplane superjet;
+				while (fin.read((char*)&superjet, sizeof(airplane)))
+				{
+					if (superjet.get_mod() == md)
+						superjet.Print();
+				}
+			}
+			fin.close();
+		}
+		if (k == 4)
+		{
+			cout << "Ведите серийный номер самолета;" << endl;
+			string sr;
+			cin >> sr;
+			//Open file read from file
+			ifstream fin;
+			if (!fin.is_open())
+			{
+				cout << "Damage file!";
+			}
+			else
+			{
+				airplane superjet;
+				while (fin.read((char*)&superjet, sizeof(airplane)))
+				{
+					if (superjet.get_serial() == sr)
+					{
+						cout << "Такой борт найден!" << endl;
+						cout << "Если вы хотите добавить кол-во пассажиров введите 1:" << endl;
+						cout << "Если вы хотите уменьшить кол-во пассажиров введите 2:" << endl;
 
-        }
-        if (z == 5)
-        {
-            Mendeleev.Search_zhanr();
-        }
-        if (z == 6)
-        {
-            Mendeleev.Search_publish();
-
-        }
-    }
-    
-
-    
+					}
+				}
+			}fin.close();
+		}
+		
+		
+		
+		
+	} 
 }
-
